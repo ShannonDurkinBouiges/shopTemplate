@@ -1,8 +1,10 @@
 <?php
 
 include '../lib/Session.php';
-include '../lib/Database.php';
-include '../helpers/Format.php';
+Session::checkLogin();
+
+include_once '../lib/Database.php';
+include_once '../helpers/Format.php';
 
 /**
  * Description of AdminLogin
@@ -28,7 +30,19 @@ class AdminLogin {
             $loginmsg = "User name or Password must not be empty";
             return $loginmsg;
         } else {
-            $query = "";
+            $query = "SELECT * FROM tbl_admin WHERE adminUser='$adminUser' AND adminPass='$adminPass'";
+            $result = $this->db->select($query);
+            if ($result != false) {
+                $value = $result->fetch_assoc();
+                Session::set("adminLogin", true);
+                Session::set("adminId", $value['adminId']);
+                Session::set("adminUser", $value['adminUser']);
+                Session::set("adminName", $value['adminName']);
+                header("Location:dashboard.php");
+            } else {
+                $loginmsg = "username or password is incorrect";
+                return $loginmsg;
+            }
         }
     }
 }
