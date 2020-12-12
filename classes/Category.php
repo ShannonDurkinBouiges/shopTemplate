@@ -40,4 +40,32 @@ class Category {
         $result = $this->db->select($query);
         return $result;
     }
+    
+    public function getCatById($id) {
+        $query = "SELECT * FROM tbl_category WHERE catId = '$id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    
+    public function catUpdate($catName, $id) {
+       $catName = $this->fm->validation($catName);
+       $catName = mysqli_real_escape_string($this->db->link, $catName);
+       $catName = mysqli_real_escape_string($this->db->link, $id);
+       if (empty($catName)) {
+           $msg = "<span class='error'>Category Field Must Not Be Empty.</span>";
+           return $msg;
+       } else {
+           $query = "UPDATE tbl_category "
+                   . "SET catName = '$catName'"
+                   . "WHERE catId = '$id'";
+           $updateRow = $this->db->update($query);
+           if ($updateRow) {
+               $msg = "<span class='success'>Category Updated Successfully.</span>";
+               return $msg;
+           } else {
+               $msg = "<span class='error'>Category Not Updated.</span>";
+           return $msg;
+           }
+       }
+    }
 }
