@@ -64,8 +64,20 @@ class Category {
                return $msg;
            } else {
                $msg = "<span class='error'>Category Not Updated.</span>";
-           return $msg;
+               return $msg;
            }
        }
+    }
+    
+    public function delCatById($id) {
+        $query = "DELETE FROM tbl_category WHERE catId = '$id'";
+        $delData = $this->db->delete($query);
+        if($delData) {
+           $msg = "<span class='success'>Category Deleted Successfully.</span>";
+           return $msg; 
+        } else {
+            $msg = "<span class='error'>Category Not Deleted.</span>";
+            return $msg;
+        }
     }
 }
