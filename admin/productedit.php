@@ -42,7 +42,7 @@
                         <label>Name</label>
                     </td>
                     <td>
-                        <input type="text" name="productName" placeholder="Enter Product Name..." class="medium" /> //productName is same as database
+                        <input type="text" name="productName" value="<?php echo $value['productName']; ?>" class="medium" /> //productName is same as database
                     </td>
                 </tr>
 				<tr>
@@ -58,7 +58,14 @@
                                 if($getCat) {
                                     while ($result = $getCat->fetch_assoc()) {
                             ?>
-                            <option value="<?php echo $result['catId']; ?>"><?php echo $result['catName']; ?></option>
+                            <option 
+                                <?php
+                                    if ($value['catId'] == $result['catId']) {?>
+                                        selected = "selected"; 
+                                   <?php } 
+                                
+                                
+                                value="<?php echo $result['catId']; ?>"><?php echo $result['catName']; ?></option>
                             <?php 
                                     }
                                 }
@@ -80,7 +87,14 @@
                                     while ($result = $getBrand->fetch_assoc()) {
                             ?>
                                     }
-                            <option value="<?php echo $result['brandId']; ?>"><?php echo $result['brandName']; ?></option>
+                            <option 
+                                <?php
+                                    if ($value['brandId'] == $result['brandId']) {?>
+                                        selected = "selected"; 
+                                   <?php } 
+                                
+                                
+                                value="<?php echo $result['brandId']; ?>"><?php echo $result['brandName']; ?></option>
                             <?php 
                                     }
                                 }
@@ -94,7 +108,9 @@
                         <label>Description</label>
                     </td>
                     <td>
-                        <textarea class="tinymce" name="body"></textarea> //body is same as name in db table
+                        <textarea class="tinymce" name="body">
+                            <?php echo $value['body']; ?>
+                        </textarea> //body is same as name in db table
                     </td>
                 </tr>
 				<tr>
@@ -102,7 +118,7 @@
                         <label>Price</label>
                     </td>
                     <td>
-                        <input type="text" name="price" placeholder="Enter Price..." class="medium" />
+                        <input type="text" name="price" value="<?php echo $value['price']; ?>" class="medium" />
                     </td>
                 </tr>
             
@@ -111,6 +127,7 @@
                         <label>Upload Image</label>
                     </td>
                     <td>
+                        <img src="<?php echo $value['image']; ?>" height="60px" width="80px";><br/> 
                         <input type="file" name="image" />
                     </td>
                 </tr>
@@ -122,8 +139,12 @@
                     <td>
                         <select id="select" name="type">
                             <option>Select Type</option>
-                            <option value="0">Featured</option> //0 & 1 are same as defined types in db
-                            <option value="1">Non-Featured</option>
+                            <?php
+                                if($value['type'] == 0) { ?>
+                                    <option selected ="selected" value="0">Featured</option>
+                                <?php } else { ?>
+                                    <option selected="selected" value="1">Non-Featured</option>
+                                <?php } ?>
                         </select>
                     </td>
                 </tr>
@@ -131,7 +152,7 @@
 				<tr>
                     <td></td>
                     <td>
-                        <input type="submit" name="submit" Value="Save" />
+                        <input type="submit" name="submit" Value="Update" />
                     </td>
                 </tr>
             </table>

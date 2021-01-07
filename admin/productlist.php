@@ -41,7 +41,7 @@
 					<td><?php echo $result['brandName']; ?></td>
                                         <td><?php echo $fm->textShorten($result['body'], 30); ?></td>
 					<td><?php echo $result['price']; ?></td>
-					<td>img src="<?php echo $result['image']; ?>" height="40px" width="60px";</td>
+					<td><img src="<?php echo $result['image']; ?>" height="40px" width="60px";></td>
 					<td><?php 
                                             if ($result['type'] == 0) {
                                                 echo "Featured";
