@@ -37,8 +37,8 @@
 				<tr class="odd gradeX">
 					<td><?php echo $i; ?></td>
 					<td><?php echo $fm->textShorten($result['productName'], 15); ?></td>
-                                        <td><?php echo $result['catId']; ?></td>
-					<td><?php echo $result['brandId']; ?></td>
+                                        <td><?php echo $result['catName']; ?></td>
+					<td><?php echo $result['brandName']; ?></td>
                                         <td><?php echo $fm->textShorten($result['body'], 30); ?></td>
 					<td><?php echo $result['price']; ?></td>
 					<td>img src="<?php echo $result['image']; ?>" height="40px" width="60px";</td>
@@ -49,7 +49,9 @@
                                                 echo "General";
                                             }
                                         ?></td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
+					<td><a href="productedit.php?proid=<?php echo $result['productId']; ?>">Edit</a> 
+                                                            || <a onclick="return confirm('Are you sure to delete the product');" 
+                                                                  href="?delpro=<?php echo $result['productId']; ?>">Delete</a></td>
 				</tr>
                                 <?php
                                         }
