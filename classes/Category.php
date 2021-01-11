@@ -8,7 +8,7 @@ include_once '../helpers/Format.php';
  */
 class Category {
     
-     private $db;
+    private $db;
     private $fm;
     
     public function __construct() {
