@@ -36,6 +36,36 @@
                 }}
             ?>
         </div>
+        
+        <div class="content_bottom">
+            <div class="heading">
+                <h3>New Products</h3> 
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="section group">
+             <?php
+                $getNpd = $pd->getNewProduct();
+                if ($getNpd) {
+                    while ($result = $getNpd->fetch_assoc()) {
+            ?>
+                <div class="grid_1_of_4 images_1_of_4">
+                <a href="preview.php?proid=<?php echo $result['productId']; ?>">
+                    <img src="admin/<?php echo $result['image']; ?>" alt="Featured Product"/>
+                </a> 
+                <h2><?php echo $result['productName']; ?></h2>
+                <p><span class="price">$<?php echo $result['price']; ?></span></p>
+                <div class="button">
+                    <span>
+                        <a href="preview.php?proid=<?php echo $result['productId']; ?>" class="details">Details</a>
+                    </span>
+                </div>
+            </div>
+            <?php
+                }}
+            ?>
+        </div>
+        
     	 <div class="login_panel">
         	<h3>Existing Customers</h3>
         	<p>Sign in with the form below.</p>

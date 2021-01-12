@@ -167,5 +167,24 @@ class Product {
         $result = $this->db->select($query);
         return $result;
     }
+    
+    public function getNewProduct() {
+        $query = "SELECT * FROM tbl_product ORDER BY productId DESC LIMIT 4";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    
+    public function getSingleProduct($id) {
+        $query = "SELECT tbl_product.*, tbl_category.catName, tbl_brand.brandName"
+                . "FROM tbl_product"
+                . "INNER JOIN tbl_category"
+                . "ON tbl_product.catId = tbl_category.catId"
+                . "INNER JOIN tbl_brand"
+                . "ON tbl_product.brandId = tbl_brand.brandId"
+                . "AND tbl_product.productId = '$id'"
+                . "ORDER BY tbl_product.productId DESC";
+        $result = $this->db->select($query);
+        return $result;
+    }
 }
     
