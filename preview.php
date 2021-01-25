@@ -13,12 +13,10 @@ if(!isset($_GET['proid']) || $_GET['proid'] == NULL) {
 ?>
 
 <?php
-/*
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $brandName = $_POST['brandName'];
+        $quantity = $_POST['quantity'];
         
-        $updateBrand = $brand->brandUpdate($brandName, $id);
- */
+        $addCart = $ct->addToCart($quantity, $id);
 ?>
 
  <div class="main">
@@ -42,11 +40,19 @@ if(!isset($_GET['proid']) || $_GET['proid'] == NULL) {
 						<p>Brand:<span><?php echo $result['brandName']; ?></span></p>
 					</div>
 				<div class="add-cart">
-					<form action="cart.php.html" method="post">
-						<input type="number" class="buyfield" name="" value="1"/>
-						<input type="submit" class="buysubmit" name="submit" value="Buy Now"/>
+					<form action="" method="post">
+						<input type="number" class="buyfield" name="quantity" value="1"/> //quantity is from cart table in db
+						<input type="submit" class="buysubmit" name="submit" value="Add to Cart"/>
 					</form>				
 				</div>
+                        <span style="color: red; font-size: 18px;">
+                            <?php
+                                if (isset($addCart)) {
+                                    echo $addCart;
+                                }
+                            ?>
+                        </span>
+                                        
 			</div>
 			<div class="product-desc">
 			<h2>Product Details</h2>
