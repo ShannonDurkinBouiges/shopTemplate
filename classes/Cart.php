@@ -82,4 +82,11 @@ class Cart {
             return $msg;
         }
     }
+    
+    public function checkCartTable() {
+        $sId = session_id();
+        $query = "SELECT * FROM tbl_cart";
+        $result = $this->db->select($query);
+        return $result;
+    }
 }
