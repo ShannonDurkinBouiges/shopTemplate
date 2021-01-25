@@ -3,6 +3,12 @@
 ?>
 
 <?php
+
+    if (isset($_GET['delpro'])) {
+        $delId = $_GET['delpro'];
+        $delProduct = $ct->delProductByCart($delId);
+    }
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $cartId = $_POST['cartId'];
         $quantity = $_POST['quantity'];
@@ -19,6 +25,10 @@
                                         if(isset($updateCart)) {
                                             echo $updateCart;
                                         }
+                                        if(isset($delProduct)) {
+                                            echo $delProduct;
+                                        }
+                                        
                                     ?>
 						<table class="tblone">
 							<tr>
@@ -60,7 +70,8 @@
                                                                         echo $total;
                                                                     ?>
                                                                 </td>
-								<td><a href="">X</a></td>
+                                                                <td><a onclick="return confirm('Are you sure you want to delete this item?');" 
+                                                                       href="?delpro=<?php echo $result['cartId']; ?>">X</a></td>
 							</tr>
                                                         
                                                         <?php
