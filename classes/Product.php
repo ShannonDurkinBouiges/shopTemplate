@@ -186,5 +186,29 @@ class Product {
         $result = $this->db->select($query);
         return $result;
     }
+    
+    public function latestFromAcer() {
+        $query = "SELECT * FROM tbl_product WHERE brandId = '3' ORDER BY productId DESC LIMIT 1";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    
+    public function latestFromZara() {
+        $query = "SELECT * FROM tbl_product WHERE brandId = '5' ORDER BY productId DESC LIMIT 1";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    
+    public function latestFromPolo() {
+        $query = "SELECT * FROM tbl_product WHERE brandId = '6' ORDER BY productId DESC LIMIT 1";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    
+    public function latestFromSamsung() {
+        $query = "SELECT * FROM tbl_product WHERE brandId = '2' ORDER BY productId DESC LIMIT 1";
+        $result = $this->db->select($query);
+        return $result;
+    }
 }
     
