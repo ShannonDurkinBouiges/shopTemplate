@@ -12,7 +12,17 @@
     <div class="content">
     	<div class="content_top">
     		<div class="heading">
-    		<h3>Latest from Category</h3>
+                    
+                <?php
+                   $productByCat = $pd->productByOnlyCat($id); 
+                   if ($productByCat) {
+                       while ($result = $productByCat->fetch_assoc()) {
+                ?>    
+    		<h3>Latest from <?php echo $result['catName']; ?></h3>
+                <?php
+                    }}
+                ?>
+                
     		</div>
     		<div class="clear"></div>
     	</div>
