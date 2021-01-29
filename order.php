@@ -1,5 +1,10 @@
 <?php
     include 'inc/_header.php';
+    
+    $login = Session::get("cusLogin");
+    if ($login == false) {
+        header("Location: login.php");
+    }
 ?>
 
 <style>

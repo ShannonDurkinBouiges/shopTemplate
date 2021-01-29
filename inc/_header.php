@@ -72,7 +72,21 @@
                         </a>
                     </div>
                 </div>
-                <div class="login"><a href="login.html">Login</a></div>
+                <div class="login">
+                    <?php
+                        $login = Session::get("cusLogin");
+                        if ($login == false) { 
+                    ?>
+                            <a href="login.html">Login</a>
+                    <?php 
+                        } else { 
+                    ?>
+                            <a href="">Logout</a>
+                    <?php
+                        }
+                    ?>
+                    
+                </div>
                 <div class="clear"></div>
             </div>
             <div class="clear"></div>
