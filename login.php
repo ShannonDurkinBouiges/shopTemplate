@@ -2,17 +2,27 @@
 include 'inc/header.php';
 ?>
 
+<?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
+        $customerLogin = $cmr->customerLogin($_POST);
+    }
+?>
 <div class="main">
     <div class="content">
         <div class="login_panel">
+            <?php
+                if (isset($customerLogin)) {
+                echo $customerLogin;
+            }
+            ?>
             <h3>Existing Customers</h3>
             <p>Sign in with the form below.</p>
-            <form action="hello" method="get" id="member">
-                <input name="Domain" type="text">
-                <input name="Domain" type="password">
+            <form action="" method="POST">
+                <input name="email" placeholder="Email" type="text">
+                <input name="pass" placeholder="Password" type="password">
+                <div class="buttons"><div><button class="grey" name="login">Sign In</button></div></div>
             </form>
-            <p class="note">If you forgot your passoword just enter your email and click <a href="#">here</a></p>
-            <div class="buttons"><div><button class="grey">Sign In</button></div></div>
+            
         </div>
         
         <?php
