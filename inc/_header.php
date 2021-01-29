@@ -72,6 +72,13 @@
                         </a>
                     </div>
                 </div>
+                
+                <?php
+                    if (isset($_GET['cid'])) {
+                        $delData = $ct->delCustomerCart();
+                        Session::destroy();
+                    }
+                ?>
                 <div class="login">
                     <?php
                         $login = Session::get("cusLogin");
@@ -81,7 +88,7 @@
                     <?php 
                         } else { 
                     ?>
-                            <a href="">Logout</a>
+                            <a href="?cid=<?php Session::set('cmrId'); ?>">Logout</a>
                     <?php
                         }
                     ?>

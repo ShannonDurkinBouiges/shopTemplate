@@ -88,4 +88,10 @@ class Cart {
         $result = $this->db->select($query);
         return $result;
     }
+    
+    public function delCustomerCart() {
+        $cId = session_id();
+        $query = "DELETE FROM tbl_cart WHERE sId = '$sId'";
+        $result = $this->db->delete($query);
+    }
 }
