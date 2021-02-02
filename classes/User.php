@@ -67,10 +67,49 @@ class User {
             Session::set("cusLogin", true);
             Session::set("cmrId", $value['id']);
             Session::set("cmrName", $value['name']);
-            header("Location:order.php");
+            header("Location:cart.php");
         } else {
             $msg = "<span class='success'>Email or Password is incorrect.</span>";
             return $msg;
+        }
+    }
+    
+    public function getCustomerData($id) {
+        $query = "SELECT * FROM tbl_customer WHERE id = '$id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    
+    public function customerUpdate($data, $cmrId) {
+        $name = mysqli_real_escape_string($this->db->link, $data['name']);
+        $address = mysqli_real_escape_string($this->db->link, $data['productName']);
+        $city = mysqli_real_escape_string($this->db->link, $data['city']);
+        $country = mysqli_real_escape_string($this->db->link, $data['country']);
+        $zip = mysqli_real_escape_string($this->db->link, $data['zip']);
+        $phone = mysqli_real_escape_string($this->db->link, $data['phone']);
+        $email = mysqli_real_escape_string($this->db->link, $data['email']);
+        
+        if ($name == "" || $address == "" || $city == "" || $country == "" ||
+                $zip == "" || $phone == "" || $email == "") {
+                    $msg = "<span class='success'>Field cannot be empty.</span>";
+                    return $msg;
+        } else {
+            $query = "UPDATE tbl_customer "
+                   . "SET name = '$name',"
+                    .    "address = '$address',"
+                    .    "country = '$country',"
+                    .    "zip = '$zip',"
+                    .    "phone = '$phone',"
+                    .    "email = '$email'"
+                   . "WHERE id = '$cmrId'";
+           $updateRow = $this->db->update($query);
+           if ($updateRow) {
+               $msg = "<span class='success'>Profile Updated Successfully.</span>";
+               return $msg;
+           } else {
+               $msg = "<span class='error'>Profile Not Updated.</span>";
+               return $msg;
+           }
         }
     }
 }
