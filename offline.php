@@ -6,6 +6,14 @@
     if ($login == false) {
         header("Location: login.php");
     }
+    
+    if (isset($_GET['orderId']) && $_GET['orderid'] == 'order') {
+        $cmrId = Session::get("cmrId");
+        $insertOrder = $ct->orderProduct($cmrId);
+        $delData = $ct->delCustomerCart();
+        
+        header("Location: success.php");
+    }
 ?>
 
 <style>
@@ -154,7 +162,7 @@
         </div>
     </div>
     <div class="orderNow">
-        <a href="">Order</a>
+        <a href="?orderId=order">Order</a>
     </div>
 </div>
 
