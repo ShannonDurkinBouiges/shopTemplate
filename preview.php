@@ -4,19 +4,24 @@
 
 <?php
 
-if(!isset($_GET['proid']) || $_GET['proid'] == NULL) {
-    echo "<script>window.location = '404.php';</script>";
-} else {
+if(isset($_GET['proid'])) {
     $id = $_GET['proid'];
 }
 
 ?>
 
 <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         $quantity = $_POST['quantity'];
         
         $addCart = $ct->addToCart($quantity, $id);
+    }
+        
+    $cmrId = Session::get("cmrId");
+     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['compare'])) {
+         $productId = $_POST['productId'];
+         $insertCompare = $pd->insertCompareData($productId, $cmrId);
+     }
 ?>
 
  <div class="main">
@@ -52,6 +57,19 @@ if(!isset($_GET['proid']) || $_GET['proid'] == NULL) {
                                 }
                             ?>
                         </span>
+                            
+                        <?php
+                            if (isset($insertCompare)) {
+                                echo $insertCompare;
+                            }
+                        ?>
+                        
+                        <div class="add-cart">
+                            <form action="" method="POST">
+                                <input type="hidden" class="buyfield" name="productId" value="<?php echo $result['productId']; ?>"/> 
+                                <input type="submit" class="buysubmit" name="compare" value="Compare"/>
+                            </form>
+                        </div>
                                         
 			</div>
 			<div class="product-desc">

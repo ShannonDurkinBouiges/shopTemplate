@@ -14,6 +14,13 @@
         $time = $_GET['time'];
         $shift = $ct->productShifted($id, $time, $price);
     }
+    
+    if (isset($_GET['delproid'])) {
+        $id = $_GET['delproid'];
+        $price = $_GET['price'];
+        $time = $_GET['time'];
+        $delOrder = $ct->delproductShifted($id, $time, $price);
+    }
 ?>
 
 <div class="grid_10">
@@ -23,6 +30,10 @@
         <?php
             if (isset($shift)) {
                 echo $shift;
+            }
+            
+            if (isset($delOrder)) {
+                echo $delOrder;
             }
         ?>
         <div class="block">        
@@ -65,7 +76,7 @@
                         <?php
                             } else {
                         ?>
-                              <td><a href="?shiftid=<?php echo $result['cmrId']; ?>&price=<td><?php echo $result['price']; ?>
+                              <td><a href="?delproid=<?php echo $result['cmrId']; ?>&price=<td><?php echo $result['price']; ?>
                                    &time=<td><?php echo $result['date']; ?></td></td>">Pending</a></td>
                         <?php
                             }
