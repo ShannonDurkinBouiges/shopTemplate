@@ -24,6 +24,7 @@
                         <th>Image</th>
                         <th>Quantity</th>
                         <th>Total Price</th>
+                        <th>Date</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -48,6 +49,7 @@
                                     echo $total;
                                     ?>
                                 </td>
+                                <td><?php echo $fm->formatDate($result['date']); ?></td>
                                 <td>
                                     <?php
                                         if ($result['status'] == '0') {
