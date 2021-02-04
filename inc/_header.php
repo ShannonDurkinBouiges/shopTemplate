@@ -108,8 +108,18 @@
                     $chkCart = $ct->checkCartTable();
                     if ($chkCart) {
                 ?>
-                <li><a href="cart.php">Cart</a></li>
-                <li><a href="payment.php">Payment</a></li>
+                    <li><a href="cart.php">Cart</a></li>
+                    <li><a href="payment.php">Payment</a></li>
+                <?php
+                    }
+                ?>
+                
+                <?php
+                $cmrId = Session::get("cmrId");
+                    $chkOrder = $ct->checkOrderTable($cmrId);
+                    if ($chkOrder) {
+                ?>
+                    <li><a href="order.php">Order</a></li>
                 <?php
                     }
                 ?>

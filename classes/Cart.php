@@ -114,4 +114,16 @@ class Cart {
             }
         }
     }
+    
+    public function getOrderProduct($cmrId) {
+        $query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' ORDER BT productId DESC";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    
+    public function checkOrderTable($cmrId) {
+        $query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId'";
+        $result = $this->db->select($query);
+        return $result;
+    }
 }
